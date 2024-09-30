@@ -1,5 +1,5 @@
 # Vefforritun 1, 2024: Verkefni 6, CSS #4
-
+ChatGPT var notaður til þess að þýða css yfir á scss í þessu verkefni.
 ## Markmið
 
 - Setja upp Node.js og NPM og nota til að sækja pakka.
