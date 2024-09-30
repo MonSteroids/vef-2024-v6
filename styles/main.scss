@@ -1,0 +1,338 @@
+// Import the configuration and variables
+@import 'config';
+
+// Import the reset file
+@import 'reset';
+
+// Import the components
+@import 'header';
+@import 'footer';
+
+// Variables
+$primary-color: var(--color-background-secondary);
+$secondary-color: var(--color-black);
+$heading-font: var(--font-family-heading);
+$body-font: var(--font-family-base);
+$button-background: var(--color-background-secondary);
+$button-hover-background: var(--color-black);
+$button-hover-color: var(--color-background-secondary);
+$border-color: var(--color-background-secondary);
+$spacing: var(--spacing);
+$transition-time-short: var(--transition-time-short);
+$transition-timing-function: var(--transition-timing-function);
+
+// Keyframes
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+// Global Styles
+html {
+  font-size: var(--font-size-base);
+  font-family: $body-font;
+  background-color: var(--color-background-primary);
+}
+
+input,
+select,
+button {
+  font-family: $body-font;
+}
+
+h1,
+h2,
+h3,
+legend {
+  font-family: $heading-font;
+}
+
+img {
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+}
+
+.back {
+  margin-top: $spacing;
+}
+
+// Button Styles
+.button {
+  display: inline-block;
+  padding: calc($spacing * 0.5) $spacing;
+  border: var(--border-regular);
+  border-radius: var(--border-radius-regular);
+  color: $secondary-color;
+  background-color: $button-background;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: background-color $transition-time-short $transition-timing-function,
+    color $transition-time-short $transition-timing-function,
+    border-color $transition-time-short $transition-timing-function;
+
+  &:hover {
+    color: $button-hover-color;
+    background-color: $button-hover-background;
+    border-color: $border-color;
+  }
+}
+
+// Animation
+header,
+.wrapper {
+  animation: var(--transition-time-long) $transition-timing-function fade-in;
+}
+
+// Wrapper styles
+.wrapper {
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: 100%;
+  justify-items: center;
+  gap: var(--vertical-space);
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--color-background-primary);
+}
+
+.wrapper-content {
+  width: var(--width-offset);
+  max-width: var(--max-width);
+}
+
+.wrapper-nav {
+  margin-bottom: $spacing;
+}
+
+@media (width >= 800px) {
+  .wrapper {
+    gap: var(--vertical-space-large);
+  }
+
+  .wrapper-content {
+    display: grid;
+    grid-template-columns: repeat(var(--columns), 1fr);
+    gap: var(--gutter);
+  }
+
+  .wrapper-nav {
+    grid-column: span 2;
+  }
+
+  .wrapper-main {
+    grid-column: span 10;
+  }
+}
+
+// Main content
+main {
+  width: 100%;
+
+  > .content {
+    display: flex;
+    flex-direction: column;
+    gap: calc($spacing * 2);
+  }
+}
+
+// Intro styles
+.intro {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: $spacing;
+}
+
+table img {
+  width: 100%;
+  min-width: var(--min-width-image);
+  max-width: var(--max-width-image);
+}
+
+.intro img {
+  order: 1;
+  border-radius: var(--border-radius-image);
+}
+
+@media (width >= 500px) {
+  .intro {
+    flex-direction: row;
+  }
+
+  .intro img {
+    max-width: var(--max-width-image);
+  }
+}
+
+// Cards
+.cards {
+  display: grid;
+  grid-template-rows: auto;
+  gap: var(--vertical-space);
+  justify-items: center;
+  width: 100%;
+}
+
+.cards > .title {
+  width: 100%;
+  text-align: center;
+}
+
+.cards > .content {
+  display: grid;
+  grid-template-rows: auto;
+  gap: var(--vertical-space);
+  justify-items: center;
+  width: 100%;
+}
+
+@media (width >= 700px) {
+  .cards > .content {
+    grid-template-columns: repeat(calc(var(--columns) - 2), 1fr);
+    grid-template-rows: auto;
+  }
+}
+
+// Card component
+.card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.event img {
+  float: left;
+  margin-right: $spacing;
+  margin-bottom: $spacing;
+}
+
+.card > .image {
+  width: 100%;
+}
+
+.card > .image img {
+  display: block;
+  border-top-left-radius: var(--border-radius-regular);
+  border-top-right-radius: var(--border-radius-regular);
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  object-position: 50% 50%;
+}
+
+.card > .content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing;
+  padding: calc($spacing / 2);
+  border: var(--border-regular);
+  border-top: 0;
+  border-bottom-left-radius: var(--border-radius-regular);
+  border-bottom-right-radius: var(--border-radius-regular);
+}
+
+.card > .content .text {
+  flex: 1;
+}
+
+.card > .content .actions {
+  display: flex;
+  justify-content: space-between;
+  gap: $spacing;
+  margin-top: $spacing;
+}
+
+.event .content {
+  width: 100%;
+}
+
+// Apply different styles for cards without images
+.card > .content:not(:has(> .image)) {
+  border: var(--border-regular);
+  border-radius: var(--border-radius-regular);
+}
+
+@media (width >= 700px) {
+  .card {
+    grid-column: span 5;
+  }
+}
+
+// Table styles
+.table-wrapper {
+  overflow-x: auto;
+}
+
+table {
+  margin-bottom: var(--spacing);
+  border-spacing: 0;
+}
+
+table th,
+table td {
+  padding: calc($spacing / 2);
+  text-align: left;
+}
+
+// More specific selectors come before less specific ones
+table tr td:first-child {
+  border-top-left-radius: var(--border-radius-regular);
+  border-bottom-left-radius: var(--border-radius-regular);
+}
+
+table tr th:first-child {
+  border-top-left-radius: var(--border-radius-regular);
+  border-bottom-left-radius: var(--border-radius-regular);
+}
+
+table tr td:last-child {
+  white-space: nowrap;
+  border-top-right-radius: var(--border-radius-regular);
+  border-bottom-right-radius: var(--border-radius-regular);
+}
+
+table tr th:last-child {
+  border-top-right-radius: var(--border-radius-regular);
+  border-bottom-right-radius: var(--border-radius-regular);
+}
+
+table tbody tr:nth-child(2n + 1) {
+  background-color: var(--color-background-secondary);
+}
+
+
+
+// Event styles
+.event {
+  clear: left;
+  width: 100%;
+  margin-bottom: calc($spacing * 2);
+}
+
+.event .title {
+  margin-bottom: $spacing;
+}
+
+.event .register {
+  clear: both;
+}
+
+// Utility class for visually hiding elements but keeping them accessible to screen readers
+.sr-only:not(:focus, :active) {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
